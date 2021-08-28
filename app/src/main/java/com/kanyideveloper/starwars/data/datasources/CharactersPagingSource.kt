@@ -1,37 +1,37 @@
 package com.kanyideveloper.starwars.data.datasources
 
-import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kanyideveloper.starwars.models.Result
 import com.kanyideveloper.starwars.network.ApiService
 import com.kanyideveloper.starwars.utils.Constants.FIRST_PAGE_INDEX
 
-class CharactersPagingSource(private val apiService: ApiService) : PagingSource<Int, Result>() {
-    override fun getRefreshKey(state: PagingState<Int, Result>): Int? {
-        return state.anchorPosition
-    }
+class CharactersPagingSource(private val apiService: ApiService, private val searchString: String) :
+    PagingSource<Int, Result>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
+        val position = params.key ?: FIRST_PAGE_INDEX
         return try {
-            val nextPage : Int = params.key ?: FIRST_PAGE_INDEX
-            val response = apiService.getCharacters()
-            var nextPageNumber : Int? = null
+            val response = apiService.getCharacters(position)
+            val characters = response.results
 
-            if (response.next != null){
-                val uri = Uri.parse(response.next)
-                val nextPageQuery = uri.getQueryParameter("page")
-                nextPageNumber = nextPageQuery?.toInt()
+            val filteredData = if (searchString != null) {
+                characters.filter { it.name.contains(searchString, true) }
+            } else {
+                characters
             }
 
-            LoadResult.Page(
-                data = response.results,
-                prevKey = null,
-                nextKey = nextPageNumber
-            )
+            val nextKey = if (response.next == null) null else position + 1
+            val prevKey = if (position == 1) null else position - 1
 
-        }catch(e: Exception){
+            LoadResult.Page(data = filteredData, prevKey = prevKey, nextKey = nextKey)
+
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Result>): Int? {
+        return state.anchorPosition
     }
 }

@@ -4,11 +4,12 @@ import com.kanyideveloper.starwars.models.People
 import com.kanyideveloper.starwars.utils.Resource
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("people/")
-    suspend fun getCharacters(): People
+    @GET("people/?page/")
+    suspend fun getCharacters(@Query("page") page: Int): People
 
 /*    @GET("films/")
     suspend fun getFilms(@Path("id") id: Int): Resource<>

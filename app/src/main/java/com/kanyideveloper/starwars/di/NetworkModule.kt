@@ -48,12 +48,12 @@ object NetworkModule {
     @Provides
     fun providesRetrofit(
         baseUrl: String,
-        conveterFactory: Converter.Factory,
+        converterFactory: Converter.Factory,
         okHttpClient: OkHttpClient
     ): Retrofit {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(conveterFactory)
+            .addConverterFactory(converterFactory)
             .client(okHttpClient)
 
         return retrofit.build()
