@@ -14,7 +14,8 @@ class CharactersAdapter :
     inner class MyViewHolder(private val binding: CharactersRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(character: Result?) {
-            binding.textView.text = character?.name
+            binding.nameTextView.text = character?.name
+            binding.dobTextView.text = character?.birthYear
         }
     }
 

@@ -1,8 +1,10 @@
 package com.kanyideveloper.starwars.data.repositories
 
+import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.kanyideveloper.starwars.data.datasources.CharactersPagingSource
 import com.kanyideveloper.starwars.models.Result
 import com.kanyideveloper.starwars.network.ApiService
@@ -13,17 +15,20 @@ import javax.inject.Inject
 
 class CharactersRepository @Inject constructor(private val apiService: ApiService) : SafeApiCall() {
 
-    /*suspend fun getCharacters() = safeApiCall {
-        apiService.getCharacters()
-    }*/
+    /*suspend fun getCharacters(searchString: Int) = safeApiCall {
+        apiService.getCharacters(searchString)
+    }
+*/
 
-
-    fun getCharacters(searchString: String): Flow<PagingData<Result>> {
+    fun getCharacters(searchString: String): LiveData<PagingData<Result>> {
         return Pager(
-            config = PagingConfig(enablePlaceholders = false, pageSize = NETWORK_PAGE_SIZE),
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
             pagingSourceFactory = {
                 CharactersPagingSource(apiService, searchString)
             }
-        ).flow
+        ).liveData
     }
 }

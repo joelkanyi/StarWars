@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.kanyideveloper.starwars.models.Result
 import com.kanyideveloper.starwars.network.ApiService
 import com.kanyideveloper.starwars.utils.Constants.FIRST_PAGE_INDEX
+import timber.log.Timber
 
 class CharactersPagingSource(private val apiService: ApiService, private val searchString: String) :
     PagingSource<Int, Result>() {
@@ -13,6 +14,7 @@ class CharactersPagingSource(private val apiService: ApiService, private val sea
         val position = params.key ?: FIRST_PAGE_INDEX
         return try {
             val response = apiService.getCharacters(position)
+            Timber.d("PagingSource: called the api")
             val characters = response.results
 
             val filteredData = if (searchString != null) {
