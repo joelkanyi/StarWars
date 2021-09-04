@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.CharactersRowBinding
 import com.kanyideveloper.starwars.models.Result
 
-class CharactersAdapter :
+class CharactersAdapter(private val onClickListener: OnClickListener) :
     PagingDataAdapter<Result, CharactersAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
 
     inner class MyViewHolder(private val binding: CharactersRowBinding) :
@@ -32,6 +32,10 @@ class CharactersAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val character = getItem(position)
         holder.bind(character)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(character!!)
+        }
     }
 
     companion object {
@@ -44,5 +48,9 @@ class CharactersAdapter :
                 return oldItem == newItem
             }
         }
+    }
+
+    class OnClickListener(val clickListener: (result: Result) -> Unit) {
+        fun onClick(result: Result) = clickListener(result)
     }
 }
