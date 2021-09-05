@@ -1,4 +1,4 @@
-package com.kanyideveloper.starwars
+package com.kanyideveloper.starwars.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

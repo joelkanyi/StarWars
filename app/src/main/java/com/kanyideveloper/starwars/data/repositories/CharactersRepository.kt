@@ -15,10 +15,9 @@ import javax.inject.Inject
 
 class CharactersRepository @Inject constructor(private val apiService: ApiService) : SafeApiCall() {
 
-    /*suspend fun getCharacters(searchString: Int) = safeApiCall {
-        apiService.getCharacters(searchString)
+    suspend fun getFilms(id: Int) = safeApiCall {
+        apiService.getFilms(id)
     }
-*/
 
     fun getCharacters(searchString: String): LiveData<PagingData<Result>> {
         return Pager(

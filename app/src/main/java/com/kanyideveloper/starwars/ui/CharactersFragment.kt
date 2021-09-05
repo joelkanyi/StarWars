@@ -1,13 +1,14 @@
-package com.kanyideveloper.starwars
+package com.kanyideveloper.starwars.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.kanyideveloper.starwars.adapters.CharactersAdapter
 import com.kanyideveloper.starwars.databinding.FragmentCharactersBinding
@@ -21,7 +22,13 @@ class CharactersFragment : Fragment() {
 
     private lateinit var binding: FragmentCharactersBinding
     private val viewModel: CharactersViewModel by viewModels()
-    private val charactersAdapter: CharactersAdapter by lazy { CharactersAdapter() }
+    private val charactersAdapter: CharactersAdapter by lazy {
+        CharactersAdapter(CharactersAdapter.OnClickListener { character ->
+            Toast.makeText(requireContext(), "${character.name}", Toast.LENGTH_SHORT).show()
+            val action = CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailsFragment(character)
+            findNavController().navigate(action)
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +45,7 @@ class CharactersFragment : Fragment() {
 
     private fun initObservers() {
         lifecycleScope.launch {
-            viewModel.getCharacters(binding.searchView.query.toString()).observe(viewLifecycleOwner, {
+            viewModel.getCharacters(binding.searchView.text.toString()).observe(viewLifecycleOwner, {
                 charactersAdapter.submitData(lifecycle, it)
             })
         }

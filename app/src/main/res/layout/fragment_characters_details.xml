@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ui.CharactersDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@color/main_dark"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textViewFullName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="FULL NAME"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewSkinColor"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewHeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="HEIGHT"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewSkinColor"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                <TextView
+                    android:id="@+id/textViewHomeWorld"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="HOMEWORLD"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewSkinColor"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                <TextView
+                    android:id="@+id/textViewFullNameValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Luke Skywalker"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewFullName"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewFullName"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewFullName" />
+
+                <TextView
+                    android:id="@+id/textViewHeightValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="172"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewHeight"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewHeight"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHeight" />
+
+                <TextView
+                    android:id="@+id/textViewHomeWorldValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Earth"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewHomeWorld"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewHomeWorld"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHomeWorld" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#7c7c7c"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewFullNameValue" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#7c7c7c"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMassValue" />
+
+                <TextView
+                    android:id="@+id/textViewHairColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="HAIR COLOR"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewSkinColor"
+                    app:layout_constraintTop_toTopOf="@+id/textViewSkinColor" />
+
+                <TextView
+                    android:id="@+id/textViewEyeColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="EYE COLOR"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textViewMass"
+                    app:layout_constraintTop_toTopOf="@+id/textViewMass" />
+
+                <TextView
+                    android:id="@+id/textViewBirthYear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="BIRTH YEAR"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/textViewGender"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGender" />
+
+                <TextView
+                    android:id="@+id/textViewHairColorValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Blonde"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewHairColor"
+                    app:layout_constraintStart_toStartOf="@+id/textViewHairColor"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHairColor" />
+
+                <TextView
+                    android:id="@+id/textViewEyeColorValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Blue"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewEyeColor"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewEyeColor"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewEyeColor" />
+
+                <TextView
+                    android:id="@+id/textViewBirthYearValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="19BBY"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewBirthYear"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewBirthYear"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewBirthYear" />
+
+                <TextView
+                    android:id="@+id/textViewSkinColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="SKIN COLOR"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewHairColor"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewFullName"
+                    app:layout_constraintTop_toTopOf="@+id/textViewFullName" />
+
+                <TextView
+                    android:id="@+id/textViewMass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="MASS"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewHairColor"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textViewHeight"
+                    app:layout_constraintTop_toTopOf="@+id/textViewHeight" />
+
+                <TextView
+                    android:id="@+id/textViewGender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="GENDER"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewHairColor"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textViewHomeWorld"
+                    app:layout_constraintTop_toTopOf="@+id/textViewHomeWorld" />
+
+                <TextView
+                    android:id="@+id/textViewSkinColorValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Fair"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewSkinColor"
+                    app:layout_constraintStart_toStartOf="@+id/textViewSkinColor"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewSkinColor" />
+
+                <TextView
+                    android:id="@+id/textViewMassValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="77"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewEyeColor"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewMass"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewMass" />
+
+                <TextView
+                    android:id="@+id/textViewGenderValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Male"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewGender"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewEyeColor"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewGender"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGender" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Films"
+                    android:textColor="@color/light_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewFilms"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView34"
+                    app:layout_constraintTop_toBottomOf="@+id/textView34"
+                    app:spanCount="4"
+                    tools:listitem="@layout/film_row" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

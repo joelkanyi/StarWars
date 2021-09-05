@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:fitsSystemWindows="true"
-    tools:context=".CharactersFragment">
+    tools:context=".ui.CharactersFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -17,15 +16,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
+    <EditText
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:queryHint="Luke..."
-        android:background="@android:color/transparent"
+        android:hint="Luke Skywalker"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="12dp"
+        android:textColor="@color/light_gray"
+        android:textColorHint="@color/light_gray"
+        android:background="@drawable/searchbar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />

@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.CharactersRowBinding
 import com.kanyideveloper.starwars.models.Result
+import timber.log.Timber
 
-class CharactersAdapter :
+class CharactersAdapter(private val onClickListener: OnClickListener) :
     PagingDataAdapter<Result, CharactersAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
 
     inner class MyViewHolder(private val binding: CharactersRowBinding) :
@@ -16,6 +17,7 @@ class CharactersAdapter :
         fun bind(character: Result?) {
             binding.nameTextView.text = character?.name
             binding.dobTextView.text = character?.birthYear
+            Timber.d("${character?.films}")
         }
     }
 
@@ -32,6 +34,10 @@ class CharactersAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val character = getItem(position)
         holder.bind(character)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(character!!)
+        }
     }
 
     companion object {
@@ -44,5 +50,9 @@ class CharactersAdapter :
                 return oldItem == newItem
             }
         }
+    }
+
+    class OnClickListener(val clickListener: (result: Result) -> Unit) {
+        fun onClick(result: Result) = clickListener(result)
     }
 }
