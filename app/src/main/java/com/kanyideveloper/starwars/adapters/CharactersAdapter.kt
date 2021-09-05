@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.CharactersRowBinding
 import com.kanyideveloper.starwars.models.Result
+import timber.log.Timber
 
 class CharactersAdapter(private val onClickListener: OnClickListener) :
     PagingDataAdapter<Result, CharactersAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
@@ -16,6 +17,7 @@ class CharactersAdapter(private val onClickListener: OnClickListener) :
         fun bind(character: Result?) {
             binding.nameTextView.text = character?.name
             binding.dobTextView.text = character?.birthYear
+            Timber.d("${character?.films}")
         }
     }
 
