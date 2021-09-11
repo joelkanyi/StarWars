@@ -338,6 +338,18 @@
                     app:spanCount="4"
                     tools:listitem="@layout/film_row" />
 
+                <ProgressBar
+                    android:id="@+id/filmProgressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/yellow"
+                    android:indeterminateTintMode="src_in"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/recyclerViewFilms"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerViewFilms"
+                    app:layout_constraintTop_toTopOf="@+id/recyclerViewFilms" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,6 +80,7 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
 
     // Retrofit and GSON
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -109,4 +110,7 @@ dependencies {
 
     // Timber for Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }

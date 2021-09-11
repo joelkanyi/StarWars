@@ -1,29 +1,20 @@
 package com.kanyideveloper.starwars.network
 
 import com.kanyideveloper.starwars.models.Film
-import com.kanyideveloper.starwars.models.People
-import com.kanyideveloper.starwars.utils.Resource
+import com.kanyideveloper.starwars.models.HomeWorld
+import com.kanyideveloper.starwars.models.PeopleResponse
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface ApiService {
 
     @GET("people/?page/")
-    suspend fun getCharacters(@Query("page") page: Int): People
+    suspend fun getCharacters(@Query("page") page: Int): PeopleResponse
 
-   @GET("films/")
-    suspend fun getFilms(@Path("id") id: Int): Film
-/*
-    @GET("planets/")
-    suspend fun getPlanets(@Path("id") id: Int): Resource<>
+    @GET
+    suspend fun getFilm(@Url url: String): Film
 
-    @GET("species/")
-    suspend fun getSpecies(@Path("id") id: Int): Resource<>
-
-    @GET("starships/")
-    suspend fun getStarships(@Path("id") id: Int): Resource<>
-
-    @GET("vehicles/")
-    suspend fun getVehicles(@Path("id") id: Int): Resource<>*/
+    @GET
+    suspend fun getHomeWorld(@Url url: String): HomeWorld
 }

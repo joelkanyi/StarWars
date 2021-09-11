@@ -7,25 +7,21 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.kanyideveloper.starwars.data.repositories.CharactersRepository
-import com.kanyideveloper.starwars.models.People
-import com.kanyideveloper.starwars.models.Result
-import com.kanyideveloper.starwars.utils.Resource
+import com.kanyideveloper.starwars.models.Character
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(private val charactersRepository: CharactersRepository) :
     ViewModel() {
-    /*fun getCharacters(searchString: String): Flow<PagingData<Result>> {
+    /*fun getCharacters(searchString: String): Flow<PagingData<Character>> {
         return charactersRepository.getCharacters(searchString).cachedIn(viewModelScope)
     }*/
 
 
-    private val _characters = MutableLiveData<PagingData<Result>>()
+    private val _characters = MutableLiveData<PagingData<Character>>()
 
-    suspend fun getCharacters(searchString: String): LiveData<PagingData<Result>> {
+    suspend fun getCharacters(searchString: String): LiveData<PagingData<Character>> {
         val response = charactersRepository.getCharacters(searchString).cachedIn(viewModelScope)
         _characters.value = response.value
         return response

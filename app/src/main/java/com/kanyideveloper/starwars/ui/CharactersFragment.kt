@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -60,13 +61,13 @@ class CharactersFragment : Fragment() {
         charactersAdapter.addLoadStateListener { loadState ->
             if (loadState.refresh is LoadState.Loading) {
                 if (charactersAdapter.snapshot().isEmpty()) {
-                    //binding.progressIndicator.isVisible = true
+                    binding.charactersProgressBar.isVisible = true
                     Timber.d("Loading...")
                 }
-                //binding.errorTextView.isVisible = false
+                binding.textViewError.isVisible = false
 
             } else {
-                //binding.progressIndicator.isVisible = false
+                binding.charactersProgressBar.isVisible = false
                 Timber.d("Stopped Loading...")
 
                 val error = when {
@@ -79,8 +80,8 @@ class CharactersFragment : Fragment() {
                 error?.let {
                     if (charactersAdapter.snapshot().isEmpty()) {
                         Timber.d("Error while loading: ${it.error.localizedMessage}")
-                        //binding.errorTextView.isVisible = true
-                        //binding.errorTextView.text = it.error.localizedMessage
+                        binding.textViewError.isVisible = true
+                        binding.textViewError.text = it.error.localizedMessage
                     }
                 }
             }

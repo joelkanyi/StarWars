@@ -6,13 +6,9 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Result(
+data class Character(
     @SerializedName("birth_year")
     val birthYear: String,
-    @SerializedName("created")
-    val created: String,
-    @SerializedName("edited")
-    val edited: String,
     @SerializedName("eye_color")
     val eyeColor: String,
     @SerializedName("films")

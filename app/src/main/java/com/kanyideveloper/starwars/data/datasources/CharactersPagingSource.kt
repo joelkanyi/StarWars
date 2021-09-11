@@ -2,19 +2,17 @@ package com.kanyideveloper.starwars.data.datasources
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.kanyideveloper.starwars.models.Result
+import com.kanyideveloper.starwars.models.Character
 import com.kanyideveloper.starwars.network.ApiService
 import com.kanyideveloper.starwars.utils.Constants.FIRST_PAGE_INDEX
-import timber.log.Timber
 
 class CharactersPagingSource(private val apiService: ApiService, private val searchString: String) :
-    PagingSource<Int, Result>() {
+    PagingSource<Int, Character>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         val position = params.key ?: FIRST_PAGE_INDEX
         return try {
             val response = apiService.getCharacters(position)
-            Timber.d("PagingSource: called the api")
             val characters = response.results
 
             val filteredData = if (searchString != null) {
@@ -33,7 +31,7 @@ class CharactersPagingSource(private val apiService: ApiService, private val sea
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Result>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
         return state.anchorPosition
     }
 }

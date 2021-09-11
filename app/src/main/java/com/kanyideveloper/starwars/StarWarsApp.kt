@@ -6,11 +6,9 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class StarWarsApp : Application() {
-
     override fun onCreate() {
         super.onCreate()
-
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG){
             Timber.plant(Timber.DebugTree())
         }
     }
