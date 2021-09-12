@@ -6,12 +6,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-
-@InstallIn(SingletonComponent::class)
+import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
+
 object RepositoryModule {
 
+    @Singleton
     @Provides
     fun providesCharactersRepository(apiService: ApiService): CharactersRepository {
         return CharactersRepository(apiService)

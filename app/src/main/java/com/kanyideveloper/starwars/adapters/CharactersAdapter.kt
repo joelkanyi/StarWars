@@ -17,7 +17,6 @@ class CharactersAdapter(private val onClickListener: OnClickListener) :
         fun bind(character: Character?) {
             binding.nameTextView.text = character?.name
             binding.dobTextView.text = character?.birthYear
-            Timber.d("${character?.films}")
         }
     }
 

@@ -12,27 +12,32 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
-
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
+
 object NetworkModule {
 
+    @Singleton
     @Provides
     fun providesBaseUrl(): String {
         return BASE_URL
     }
 
+    @Singleton
     @Provides
     fun providesLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
+    @Singleton
     @Provides
     fun providesConverterFactory(): Converter.Factory {
         return GsonConverterFactory.create()
     }
 
+    @Singleton
     @Provides
     fun providesOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
@@ -45,6 +50,7 @@ object NetworkModule {
         return okHttpClient.build()
     }
 
+    @Singleton
     @Provides
     fun providesRetrofit(
         baseUrl: String,
@@ -59,6 +65,7 @@ object NetworkModule {
         return retrofit.build()
     }
 
+    @Singleton
     @Provides
     fun providesApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
