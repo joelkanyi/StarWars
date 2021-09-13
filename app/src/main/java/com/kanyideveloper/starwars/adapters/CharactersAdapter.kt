@@ -6,18 +6,17 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.CharactersRowBinding
-import com.kanyideveloper.starwars.models.Result
+import com.kanyideveloper.starwars.models.Character
 import timber.log.Timber
 
 class CharactersAdapter(private val onClickListener: OnClickListener) :
-    PagingDataAdapter<Result, CharactersAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
+    PagingDataAdapter<Character, CharactersAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
 
     inner class MyViewHolder(private val binding: CharactersRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(character: Result?) {
+        fun bind(character: Character?) {
             binding.nameTextView.text = character?.name
             binding.dobTextView.text = character?.birthYear
-            Timber.d("${character?.films}")
         }
     }
 
@@ -41,18 +40,18 @@ class CharactersAdapter(private val onClickListener: OnClickListener) :
     }
 
     companion object {
-        private val CHARACTER_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
-            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+        private val CHARACTER_COMPARATOR = object : DiffUtil.ItemCallback<Character>() {
+            override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean {
                 return oldItem.name == newItem.name
             }
 
-            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
                 return oldItem == newItem
             }
         }
     }
 
-    class OnClickListener(val clickListener: (result: Result) -> Unit) {
-        fun onClick(result: Result) = clickListener(result)
+    class OnClickListener(val clickListener: (character: Character) -> Unit) {
+        fun onClick(character: Character) = clickListener(character)
     }
 }

@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/charactersFragment"
         android:name="com.kanyideveloper.starwars.ui.CharactersFragment"
-        android:label="fragment_characters"
-        tools:layout="@layout/fragment_characters" >
+        android:label=""
+        tools:layout="@layout/fragment_characters">
         <action
             android:id="@+id/action_charactersFragment_to_charactersDetailsFragment"
             app:destination="@id/charactersDetailsFragment" />
@@ -17,10 +17,10 @@
     <fragment
         android:id="@+id/charactersDetailsFragment"
         android:name="com.kanyideveloper.starwars.ui.CharactersDetailsFragment"
-        android:label="fragment_characters_details"
-        tools:layout="@layout/fragment_characters_details" >
+        android:label="Character Details"
+        tools:layout="@layout/fragment_characters_details">
         <argument
             android:name="characterDetails"
-            app:argType="com.kanyideveloper.starwars.models.Result" />
+            app:argType="com.kanyideveloper.starwars.models.Character" />
     </fragment>
 </navigation>

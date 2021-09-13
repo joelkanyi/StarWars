@@ -1,5 +1,6 @@
 package com.kanyideveloper.starwars.di
 
+import com.kanyideveloper.starwars.data.repositories.CharactersRepository
 import com.kanyideveloper.starwars.network.ApiService
 import com.kanyideveloper.starwars.utils.Constants.BASE_URL
 import dagger.Module
@@ -12,39 +13,45 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
-
-@InstallIn(SingletonComponent::class)
 @Module
-object NetworkModule {
+@InstallIn(SingletonComponent::class)
 
+object AppModule {
+
+    @Singleton
     @Provides
     fun providesBaseUrl(): String {
         return BASE_URL
     }
 
+    @Singleton
     @Provides
     fun providesLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
+    @Singleton
     @Provides
     fun providesConverterFactory(): Converter.Factory {
         return GsonConverterFactory.create()
     }
 
+    @Singleton
     @Provides
     fun providesOkhttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .callTimeout(60, TimeUnit.SECONDS)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
+            .callTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
 
         return okHttpClient.build()
     }
 
+    @Singleton
     @Provides
     fun providesRetrofit(
         baseUrl: String,
@@ -59,8 +66,15 @@ object NetworkModule {
         return retrofit.build()
     }
 
+    @Singleton
     @Provides
     fun providesApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesCharactersRepository(apiService: ApiService): CharactersRepository {
+        return CharactersRepository(apiService)
     }
 }

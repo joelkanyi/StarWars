@@ -2,14 +2,14 @@ package com.kanyideveloper.starwars.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.FilmRowBinding
 import com.kanyideveloper.starwars.models.Film
 
-class FilmsAdapter(private val onClickListener: OnClickListener) :
-    PagingDataAdapter<Film, FilmsAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
+class FilmsAdapter :
+    ListAdapter<Film, FilmsAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
 
     inner class MyViewHolder(private val binding: FilmRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,10 +32,6 @@ class FilmsAdapter(private val onClickListener: OnClickListener) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val character = getItem(position)
         holder.bind(character)
-
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(character!!)
-        }
     }
 
     companion object {
@@ -48,9 +44,5 @@ class FilmsAdapter(private val onClickListener: OnClickListener) :
                 return oldItem == newItem
             }
         }
-    }
-
-    class OnClickListener(val clickListener: (result: Film) -> Unit) {
-        fun onClick(result: Film) = clickListener(result)
     }
 }
