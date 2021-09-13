@@ -5,13 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.kanyideveloper.starwars.adapters.FilmsAdapter
 import com.kanyideveloper.starwars.databinding.FragmentCharactersDetailsBinding
+import com.kanyideveloper.starwars.utils.Resource
 import com.kanyideveloper.starwars.viewmodels.CharacterDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class CharactersDetailsFragment : Fragment() {
@@ -22,11 +26,10 @@ class CharactersDetailsFragment : Fragment() {
         FilmsAdapter()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCharactersDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -41,29 +44,46 @@ class CharactersDetailsFragment : Fragment() {
             binding.textViewBirthYearValue.text = result.birthYear
         })
 
-        viewModel.filmDetails.observe(viewLifecycleOwner, Observer { event ->
-
-            when (event) {
-                is CharacterDetailsViewModel.DetailsEvent.Success -> {
-                    binding.filmProgressBar.isVisible = false
-                    filmsAdapter.submitList(event.resultData)
-                    binding.recyclerViewFilms.adapter = filmsAdapter
+        lifecycleScope.launchWhenStarted {
+            viewModel.filmDetails.collect { event ->
+                when (event) {
+                    is Resource.Success -> {
+                        binding.filmProgressBar.isVisible = false
+                        filmsAdapter.submitList(event.data)
+                        binding.recyclerViewFilms.adapter = filmsAdapter
+                    }
+                    is Resource.Failure -> {
+                        binding.filmProgressBar.isVisible = false
+                        binding.textViewFilmsError.isVisible = true
+                        binding.textViewFilmsError.text = event.message
+                    }
+                    is Resource.Loading -> {
+                        binding.filmProgressBar.isVisible = true
+                    }
+                    else -> Unit
                 }
-                is CharacterDetailsViewModel.DetailsEvent.Failure -> {
-                    binding.filmProgressBar.isVisible = false
-                    binding.textViewFilmsError.isVisible = true
-                    binding.textViewFilmsError.text = event.errorText
-                }
-                is CharacterDetailsViewModel.DetailsEvent.Loading -> {
-                    binding.filmProgressBar.isVisible = true
-                }
-                else -> Unit
             }
-        })
+        }
 
-        /* viewModel.homeWorld.observe(viewLifecycleOwner, Observer { homeWorld ->
-             binding.textViewHomeWorldValue.text = homeWorld.name
-         })*/
+        lifecycleScope.launchWhenStarted {
+            viewModel.homeWorld.collect { event ->
+                when (event) {
+                    is Resource.Success -> {
+                        binding.progressBarHomeWord.isVisible = false
+                        binding.textViewHomeWorldValue.text = event.data!!.name
+                    }
+                    is Resource.Failure -> {
+                        binding.progressBarHomeWord.isVisible = false
+                        binding.textViewHomeWorldValue.text = event.message
+                        Toast.makeText(requireContext(), "No Home World", Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBarHomeWord.isVisible = true
+                    }
+                    else -> Unit
+                }
+            }
+        }
 
         return view
     }

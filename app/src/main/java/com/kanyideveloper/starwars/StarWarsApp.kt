@@ -8,6 +8,10 @@ import timber.log.Timber
 class StarWarsApp : Application() {
     override fun onCreate() {
         super.onCreate()
+        createTimber()
+    }
+
+    private fun createTimber(){
         if (BuildConfig.DEBUG){
             Timber.plant(Timber.DebugTree())
         }
