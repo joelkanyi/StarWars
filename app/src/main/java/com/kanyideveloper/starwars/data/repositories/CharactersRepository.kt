@@ -21,10 +21,6 @@ import javax.inject.Inject
 
 class CharactersRepository @Inject constructor(private val apiService: ApiService) : SafeApiCall() {
 
-    val _filmDetails = MutableLiveData<List<Film>>()
-    val _homeWorld = MutableLiveData<HomeWorld>()
-    private val filmsList: ArrayList<Film> = ArrayList()
-
     fun getCharacters(searchString: String): LiveData<PagingData<Character>> {
         return Pager(
             config = PagingConfig(
@@ -37,28 +33,11 @@ class CharactersRepository @Inject constructor(private val apiService: ApiServic
         ).liveData
     }
 
-    private suspend fun getFilm(url: String) = safeApiCall {
+    suspend fun getFilm(url: String) = safeApiCall {
         apiService.getFilm(url)
     }
 
-    private suspend fun getHomeWorld(url: String) = safeApiCall {
+    suspend fun getHomeWorld(url: String) = safeApiCall {
         apiService.getHomeWorld(url)
-    }
-
-    fun getFilmData(characterDetails: Character) {
-        characterDetails.films.forEach { film ->
-            CoroutineScope(Dispatchers.Main).launch {
-                filmsList.add(getFilm(film).data!!)
-                _filmDetails.value = filmsList
-                Timber.d(filmsList.toString())
-            }
-        }
-    }
-
-    fun getHomeWorldData(homeWorldUrl: String){
-        CoroutineScope(Dispatchers.Main).launch {
-            _homeWorld.value = getHomeWorld(homeWorldUrl).data!!
-            Timber.d(filmsList.toString())
-        }
     }
 }

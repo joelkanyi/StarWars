@@ -8,6 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.kanyideveloper.starwars.data.repositories.CharactersRepository
 import com.kanyideveloper.starwars.models.Character
+import com.kanyideveloper.starwars.models.Film
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,6 +18,8 @@ class CharactersViewModel @Inject constructor(private val charactersRepository: 
     /*fun getCharacters(searchString: String): Flow<PagingData<Character>> {
         return charactersRepository.getCharacters(searchString).cachedIn(viewModelScope)
     }*/
+
+
 
 
     private val _characters = MutableLiveData<PagingData<Character>>()

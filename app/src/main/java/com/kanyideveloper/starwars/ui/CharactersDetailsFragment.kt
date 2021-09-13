@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.kanyideveloper.starwars.adapters.FilmsAdapter
@@ -40,14 +41,29 @@ class CharactersDetailsFragment : Fragment() {
             binding.textViewBirthYearValue.text = result.birthYear
         })
 
-        viewModel.filmDetails.observe(viewLifecycleOwner, Observer { films ->
-            filmsAdapter.submitList(films)
-            binding.recyclerViewFilms.adapter = filmsAdapter
+        viewModel.filmDetails.observe(viewLifecycleOwner, Observer { event ->
+
+            when (event) {
+                is CharacterDetailsViewModel.DetailsEvent.Success -> {
+                    binding.filmProgressBar.isVisible = false
+                    filmsAdapter.submitList(event.resultData)
+                    binding.recyclerViewFilms.adapter = filmsAdapter
+                }
+                is CharacterDetailsViewModel.DetailsEvent.Failure -> {
+                    binding.filmProgressBar.isVisible = false
+                    binding.textViewFilmsError.isVisible = true
+                    binding.textViewFilmsError.text = event.errorText
+                }
+                is CharacterDetailsViewModel.DetailsEvent.Loading -> {
+                    binding.filmProgressBar.isVisible = true
+                }
+                else -> Unit
+            }
         })
 
-        viewModel.homeWorld.observe(viewLifecycleOwner, Observer { homeWorld ->
-            binding.textViewHomeWorldValue.text = homeWorld.name
-        })
+        /* viewModel.homeWorld.observe(viewLifecycleOwner, Observer { homeWorld ->
+             binding.textViewHomeWorldValue.text = homeWorld.name
+         })*/
 
         return view
     }

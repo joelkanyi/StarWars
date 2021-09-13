@@ -1,5 +1,6 @@
 package com.kanyideveloper.starwars.di
 
+import com.kanyideveloper.starwars.data.repositories.CharactersRepository
 import com.kanyideveloper.starwars.network.ApiService
 import com.kanyideveloper.starwars.utils.Constants.BASE_URL
 import dagger.Module
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 
-object NetworkModule {
+object AppModule {
 
     @Singleton
     @Provides
@@ -69,5 +70,11 @@ object NetworkModule {
     @Provides
     fun providesApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesCharactersRepository(apiService: ApiService): CharactersRepository {
+        return CharactersRepository(apiService)
     }
 }
