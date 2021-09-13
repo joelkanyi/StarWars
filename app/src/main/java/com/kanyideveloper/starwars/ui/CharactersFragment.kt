@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,8 +14,8 @@ import com.kanyideveloper.starwars.adapters.CharactersAdapter
 import com.kanyideveloper.starwars.databinding.FragmentCharactersBinding
 import com.kanyideveloper.starwars.viewmodels.CharactersViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import kotlinx.coroutines.flow.collect
+
 
 @AndroidEntryPoint
 class CharactersFragment : Fragment() {
@@ -25,8 +24,9 @@ class CharactersFragment : Fragment() {
     private val viewModel: CharactersViewModel by viewModels()
     private val charactersAdapter: CharactersAdapter by lazy {
         CharactersAdapter(CharactersAdapter.OnClickListener { character ->
-            Toast.makeText(requireContext(), "${character.name}", Toast.LENGTH_SHORT).show()
-            val action = CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailsFragment(character)
+            val action = CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailsFragment(
+                    character
+                )
             findNavController().navigate(action)
         })
     }
@@ -38,18 +38,14 @@ class CharactersFragment : Fragment() {
         binding = FragmentCharactersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        initObservers()
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.getCharacters("").collect {
+                charactersAdapter.submitData(lifecycle, it)
+            }
+        }
         setUpAdapter()
 
         return view
-    }
-
-    private fun initObservers() {
-        lifecycleScope.launch {
-            viewModel.getCharacters(binding.searchView.text.toString()).observe(viewLifecycleOwner, {
-                charactersAdapter.submitData(lifecycle, it)
-            })
-        }
     }
 
     private fun setUpAdapter() {
@@ -62,13 +58,11 @@ class CharactersFragment : Fragment() {
             if (loadState.refresh is LoadState.Loading) {
                 if (charactersAdapter.snapshot().isEmpty()) {
                     binding.charactersProgressBar.isVisible = true
-                    Timber.d("Loading...")
                 }
                 binding.textViewError.isVisible = false
 
             } else {
                 binding.charactersProgressBar.isVisible = false
-                Timber.d("Stopped Loading...")
 
                 val error = when {
                     loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
@@ -79,7 +73,6 @@ class CharactersFragment : Fragment() {
                 }
                 error?.let {
                     if (charactersAdapter.snapshot().isEmpty()) {
-                        Timber.d("Error while loading: ${it.error.localizedMessage}")
                         binding.textViewError.isVisible = true
                         binding.textViewError.text = it.error.localizedMessage
                     }

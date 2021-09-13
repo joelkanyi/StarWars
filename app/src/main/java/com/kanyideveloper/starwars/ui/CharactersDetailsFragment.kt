@@ -44,7 +44,7 @@ class CharactersDetailsFragment : Fragment() {
             binding.textViewBirthYearValue.text = result.birthYear
         })
 
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.filmDetails.collect { event ->
                 when (event) {
                     is Resource.Success -> {
@@ -65,7 +65,7 @@ class CharactersDetailsFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.homeWorld.collect { event ->
                 when (event) {
                     is Resource.Success -> {
