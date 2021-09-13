@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -24,7 +25,8 @@ class CharactersFragment : Fragment() {
     private val viewModel: CharactersViewModel by viewModels()
     private val charactersAdapter: CharactersAdapter by lazy {
         CharactersAdapter(CharactersAdapter.OnClickListener { character ->
-            val action = CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailsFragment(
+            val action =
+                CharactersFragmentDirections.actionCharactersFragmentToCharactersDetailsFragment(
                     character
                 )
             findNavController().navigate(action)
@@ -38,14 +40,24 @@ class CharactersFragment : Fragment() {
         binding = FragmentCharactersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.getCharacters("").collect {
-                charactersAdapter.submitData(lifecycle, it)
-            }
+        binding.searchView.setEndIconOnClickListener {
+            Toast.makeText(requireContext(), "Search", Toast.LENGTH_SHORT).show()
+            setupObserver(binding.searchView.editText!!.text.toString())
         }
+
+        setupObserver("")
+
         setUpAdapter()
 
         return view
+    }
+
+    private fun setupObserver(searchString: String) {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.getCharacters(searchString).collect {
+                charactersAdapter.submitData(lifecycle, it)
+            }
+        }
     }
 
     private fun setUpAdapter() {
