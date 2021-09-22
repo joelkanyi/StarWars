@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_characters">
         <action
             android:id="@+id/action_charactersFragment_to_charactersDetailsFragment"
-            app:destination="@id/charactersDetailsFragment" />
+            app:destination="@id/charactersDetailsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/charactersDetailsFragment"
@@ -31,6 +35,8 @@
         <action
             android:id="@+id/action_splashFragment_to_charactersFragment"
             app:destination="@id/charactersFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
