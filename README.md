@@ -25,7 +25,6 @@ An Android app built with Kotlin, consuming [StarWars API](https://swapi.dev/) t
 - [Timber](https://github.com/JakeWharton/timber)- A logger with a small, extensible API which provides utility on top of Android's normal Log class.
  
 ## Demo
-App's screenshots:
 <img src="screenshots/img1.png" width="250"/> <img src="screenshots/img2.png" width="250"/> <img src="screenshots/img3.png" width="250"/> <img src="screenshots/img4.png" width="250"/>
 
 ## Setup Requirements
