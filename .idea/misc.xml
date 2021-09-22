@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27037037037037037" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.27384615384615385" />
         <entry key="app/src/main/res/drawable/ic_star_wars.xml" value="0.27384615384615385" />
+        <entry key="app/src/main/res/drawable/logo.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/searchbar_background.xml" value="0.27384615384615385" />
+        <entry key="app/src/main/res/drawable/splash_image.xml" value="0.27037037037037037" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/characters_row.xml" value="0.48703703703703705" />
         <entry key="app/src/main/res/layout/film_row.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_characters.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/fragment_characters_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/test.xml" value="0.26197916666666665" />
       </map>
     </option>

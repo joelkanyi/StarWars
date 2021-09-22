@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
         <item name="android:editTextColor">@android:color/white</item>
         <item name="android:textColorHint">@android:color/white</item>
+
+        <item name="android:windowBackground">@color/main</item>
     </style>
 
     <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">

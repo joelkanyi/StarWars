@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/charactersFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/charactersFragment"
@@ -22,5 +22,16 @@
         <argument
             android:name="characterDetails"
             app:argType="com.kanyideveloper.starwars.models.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.kanyideveloper.starwars.ui.SplashFragment"
+        android:label=""
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_charactersFragment"
+            app:destination="@id/charactersFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
