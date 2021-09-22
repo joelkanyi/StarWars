@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.kanyideveloper.starwars.adapters.CharactersAdapter
 import com.kanyideveloper.starwars.databinding.FragmentCharactersBinding
+import com.kanyideveloper.starwars.utils.hideKeyboard
 import com.kanyideveloper.starwars.viewmodels.CharactersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -30,6 +31,7 @@ class CharactersFragment : Fragment() {
                     character
                 )
             findNavController().navigate(action)
+            binding.searchView.editText!!.setText("")
         })
     }
 
@@ -42,6 +44,8 @@ class CharactersFragment : Fragment() {
 
         binding.searchView.setEndIconOnClickListener {
             setUpObserver(binding.searchView.editText!!.text.toString())
+            binding.charactersProgressBar.isVisible = true
+            hideKeyboard()
         }
 
         setUpObserver("")
