@@ -14,11 +14,11 @@
         android:background="@null"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/MyThemeOverlay_Toolbar"
-        app:titleTextColor="@color/white"
-        app:theme="@style/ThemeOverlay.AppCompat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ThemeOverlay.AppCompat"
+        app:titleTextColor="@color/white" />
 
     <fragment
         android:id="@+id/fragmentContainerView"

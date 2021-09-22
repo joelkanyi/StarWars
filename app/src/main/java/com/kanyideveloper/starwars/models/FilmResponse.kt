@@ -3,7 +3,7 @@ package com.kanyideveloper.starwars.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Film(
+data class FilmResponse(
     @SerializedName("opening_crawl")
     val openingCrawl: String,
     @SerializedName("title")

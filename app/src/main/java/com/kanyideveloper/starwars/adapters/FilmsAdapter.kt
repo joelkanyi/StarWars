@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.FilmRowBinding
-import com.kanyideveloper.starwars.models.Film
+import com.kanyideveloper.starwars.models.FilmResponse
 
 class FilmsAdapter :
-    ListAdapter<Film, FilmsAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
+    ListAdapter<FilmResponse, FilmsAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {
 
     inner class MyViewHolder(private val binding: FilmRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(film: Film?) {
-            binding.textViewFilmName.text = film?.title
-            binding.textViewOpeningCrawl.text = film?.openingCrawl
+        fun bind(filmResponse: FilmResponse?) {
+            binding.textViewFilmName.text = filmResponse?.title
+            binding.textViewOpeningCrawl.text = filmResponse?.openingCrawl
         }
     }
 
@@ -35,12 +35,12 @@ class FilmsAdapter :
     }
 
     companion object {
-        private val CHARACTER_COMPARATOR = object : DiffUtil.ItemCallback<Film>() {
-            override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
+        private val CHARACTER_COMPARATOR = object : DiffUtil.ItemCallback<FilmResponse>() {
+            override fun areItemsTheSame(oldItem: FilmResponse, newItem: FilmResponse): Boolean {
                 return oldItem.title == newItem.title
             }
 
-            override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
+            override fun areContentsTheSame(oldItem: FilmResponse, newItem: FilmResponse): Boolean {
                 return oldItem == newItem
             }
         }

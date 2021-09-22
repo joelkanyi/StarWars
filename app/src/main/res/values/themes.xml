@@ -15,9 +15,9 @@
         <item name="android:editTextColor">@android:color/white</item>
         <item name="android:textColorHint">@android:color/white</item>
     </style>
+
     <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
         <item name="colorOnPrimary">@color/white</item>
     </style>
-
 
 </resources>

@@ -11,8 +11,8 @@ class StarWarsApp : Application() {
         createTimber()
     }
 
-    private fun createTimber(){
-        if (BuildConfig.DEBUG){
+    private fun createTimber() {
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }

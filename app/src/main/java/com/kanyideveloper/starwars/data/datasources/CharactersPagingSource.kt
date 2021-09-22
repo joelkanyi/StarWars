@@ -15,13 +15,9 @@ class CharactersPagingSource(private val apiService: ApiService, private val sea
             val response = apiService.getCharacters(position)
             val characters = response.results
 
-            val filteredData = if (searchString != null) {
-                characters.filter { it.name.contains(searchString, true) }
-            } else {
-                characters
-            }
+            val filteredData = characters.filter { it.name.contains(searchString, true) }
 
-            val nextKey = if (response.next == null) null else position + 1
+            val nextKey = position + 1
             val prevKey = if (position == 1) null else position - 1
 
             LoadResult.Page(data = filteredData, prevKey = prevKey, nextKey = nextKey)

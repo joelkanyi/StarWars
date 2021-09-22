@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +22,7 @@ class CharactersFragment : Fragment() {
 
     private lateinit var binding: FragmentCharactersBinding
     private val viewModel: CharactersViewModel by viewModels()
+
     private val charactersAdapter: CharactersAdapter by lazy {
         CharactersAdapter(CharactersAdapter.OnClickListener { character ->
             val action =
@@ -36,23 +36,22 @@ class CharactersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCharactersBinding.inflate(inflater, container, false)
         val view = binding.root
 
         binding.searchView.setEndIconOnClickListener {
-            Toast.makeText(requireContext(), "Search", Toast.LENGTH_SHORT).show()
-            setupObserver(binding.searchView.editText!!.text.toString())
+            setUpObserver(binding.searchView.editText!!.text.toString())
         }
 
-        setupObserver("")
+        setUpObserver("")
 
         setUpAdapter()
 
         return view
     }
 
-    private fun setupObserver(searchString: String) {
+    private fun setUpObserver(searchString: String) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.getCharacters(searchString).collect {
                 charactersAdapter.submitData(lifecycle, it)

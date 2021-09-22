@@ -3,4 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="luke_skywalker">Luke Skywalker</string>
+    <string name="films">Films</string>
+    <string name="full_name">FULL NAME</string>
+    <string name="height">HEIGHT</string>
+    <string name="homeworld">HOMEWORLD</string>
+    <string name="hair_color">HAIR COLOR</string>
+    <string name="eye_color">EYE COLOR</string>
+    <string name="birth_year">BIRTH YEAR</string>
+    <string name="skin_color">SKIN COLOR</string>
+    <string name="mass">MASS</string>
+    <string name="gender">GENDER</string>
 </resources>

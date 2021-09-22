@@ -70,11 +70,10 @@
         app:layout_constraintStart_toStartOf="@+id/charactersRecyclerview"
         app:layout_constraintTop_toTopOf="@+id/charactersRecyclerview" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
@@ -83,6 +82,6 @@
         app:layout_constraintEnd_toEndOf="@+id/charactersRecyclerview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/charactersRecyclerview"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

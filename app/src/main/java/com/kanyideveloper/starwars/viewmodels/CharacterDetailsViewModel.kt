@@ -3,9 +3,9 @@ package com.kanyideveloper.starwars.viewmodels
 
 import androidx.lifecycle.*
 import com.kanyideveloper.starwars.data.repositories.CharactersRepository
-import com.kanyideveloper.starwars.models.Film
+import com.kanyideveloper.starwars.models.FilmResponse
 import com.kanyideveloper.starwars.models.Character
-import com.kanyideveloper.starwars.models.HomeWorld
+import com.kanyideveloper.starwars.models.HomeWorldResponse
 import com.kanyideveloper.starwars.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -28,15 +28,15 @@ class CharacterDetailsViewModel @Inject constructor(
     val details: LiveData<Character>
         get() = _details
 
-    private val _homeWorld = MutableStateFlow<Resource<HomeWorld>>(Resource.Empty())
-    val homeWorld: StateFlow<Resource<HomeWorld>>
+    private val _homeWorld = MutableStateFlow<Resource<HomeWorldResponse>>(Resource.Empty())
+    val homeWorldResponse: StateFlow<Resource<HomeWorldResponse>>
         get() = _homeWorld
 
-    private val _filmDetails = MutableStateFlow<Resource<List<Film>>>(Resource.Empty())
-    val filmDetails: StateFlow<Resource<List<Film>>>
+    private val _filmDetails = MutableStateFlow<Resource<List<FilmResponse>>>(Resource.Empty())
+    val filmResponseDetails: StateFlow<Resource<List<FilmResponse>>>
         get() = _filmDetails
 
-    private val filmsList: ArrayList<Film> = ArrayList()
+    private val filmsList: ArrayList<FilmResponse> = ArrayList()
 
     init {
         _details.value = myArguments!!
@@ -56,7 +56,7 @@ class CharacterDetailsViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         if (characterDetailsResponse.data == null) {
-                            _filmDetails.value = Resource.Failure("Empty Film List")
+                            _filmDetails.value = Resource.Failure("Empty Film Response List")
                         } else {
                             filmsList.add(characterDetailsResponse.data)
                             _filmDetails.value = Resource.Success(filmsList)
