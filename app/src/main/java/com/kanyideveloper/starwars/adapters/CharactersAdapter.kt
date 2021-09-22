@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyideveloper.starwars.databinding.CharactersRowBinding
 import com.kanyideveloper.starwars.models.Character
-import timber.log.Timber
 
 class CharactersAdapter(private val onClickListener: OnClickListener) :
     PagingDataAdapter<Character, CharactersAdapter.MyViewHolder>(CHARACTER_COMPARATOR) {

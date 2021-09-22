@@ -45,7 +45,7 @@ class CharactersDetailsFragment : Fragment() {
         })
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.filmDetails.collect { event ->
+            viewModel.filmResponseDetails.collect { event ->
                 when (event) {
                     is Resource.Success -> {
                         binding.filmProgressBar.isVisible = false
@@ -66,7 +66,7 @@ class CharactersDetailsFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.homeWorld.collect { event ->
+            viewModel.homeWorldResponse.collect { event ->
                 when (event) {
                     is Resource.Success -> {
                         binding.progressBarHomeWord.isVisible = false
@@ -75,7 +75,7 @@ class CharactersDetailsFragment : Fragment() {
                     is Resource.Failure -> {
                         binding.progressBarHomeWord.isVisible = false
                         binding.textViewHomeWorldValue.text = event.message
-                        Toast.makeText(requireContext(), "No Home World", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), event.message, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Loading -> {
                         binding.progressBarHomeWord.isVisible = true
