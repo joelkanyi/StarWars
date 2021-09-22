@@ -23,6 +23,8 @@ An Android app built with Kotlin, consuming [StarWars API](https://swapi.dev/) t
 - [GitHub Actions](https://github.com/features/actions) - GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.
 - [Glide](https://github.com/bumptech/glide)- An image loading and caching library for Android focused on smooth scrolling.
 - [Timber](https://github.com/JakeWharton/timber)- A logger with a small, extensible API which provides utility on top of Android's normal Log class.
+- [SavedStateHandle](https://developer.android.com/guide/navigation/navigation-programmatic) - Getting results from a destination when navigating from one fragment to another
+- [SafeApiCall](https://github.com/JoelKanyi/StarWars/blob/main/app/src/main/java/com/kanyideveloper/starwars/network/SafeApiCall.kt) Making safe API calls
  
 ## Demo
 <img src="screenshots/img1.png" width="250"/> <img src="screenshots/img2.png" width="250"/> <img src="screenshots/img3.png" width="250"/> <img src="screenshots/img4.png" width="250"/>
